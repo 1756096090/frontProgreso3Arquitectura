@@ -1,0 +1,191 @@
+<p>teachers works!</p>
+<div class="container mt-5">
+    <div class="d-flex flex-wrap">
+
+
+      <!-- <div class="card m-2" style="width: 18rem;">
+        <img [src]="imageUrl" class="card-img-top" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">{{ title }}</h5>
+            <p class="card-text">{{ text }}</p>
+          <fieldset class="rating">
+            <input type="radio" id="star5" name="rating1" [checked]="rating1 == 5" disabled/>
+            <label for="star5">5 stars</label>
+            <input type="radio" id="star4" name="rating1" [checked]="rating1 == 4" disabled/>
+            <label for="star4">4 stars</label>
+            <input type="radio" id="star3" name="rating1" [checked]="rating1 == 3" disabled/>
+            <label for="star3">3 stars</label>
+            <input type="radio" id="star2" name="rating1" [checked]="rating1 == 2" disabled/>
+            <label for="star2">2 stars</label>
+            <input type="radio" id="star1" name="rating1" [checked]="rating1 == 1" disabled/>
+            <label for="star1">1 star</label>
+          </fieldset>
+        </div>
+      </div> -->
+
+
+
+      <div *ngFor="let teacher of teachers" class="card m-2" style="width: 18rem;">
+      <img [src]="teacher.imageUrl" class="card-img-top" alt="Card image cap">
+      <div class="card-body">
+        <h5 class="card-title">{{ teacher.name }}</h5>
+        <p class="card-text">{{ teacher.description }}</p>
+        <fieldset class="rating">
+          <input type="radio" id="star5-{{teacher.id}}" name="rating-{{teacher.id}}" [checked]="teacher.rating == 5" (click)="updateRating(teacher.id, 5)"/>
+          <label for="star5-{{teacher.id}}">5 stars</label>
+          <input type="radio" id="star4-{{teacher.id}}" name="rating-{{teacher.id}}" [checked]="teacher.rating == 4" (click)="updateRating(teacher.id, 4)"/>
+          <label for="star4-{{teacher.id}}">4 stars</label>
+          <input type="radio" id="star3-{{teacher.id}}" name="rating-{{teacher.id}}" [checked]="teacher.rating == 3" (click)="updateRating(teacher.id, 3)"/>
+          <label for="star3-{{teacher.id}}">3 stars</label>
+          <input type="radio" id="star2-{{teacher.id}}" name="rating-{{teacher.id}}" [checked]="teacher.rating == 2" (click)="updateRating(teacher.id, 2)"/>
+          <label for="star2-{{teacher.id}}">2 stars</label>
+          <input type="radio" id="star1-{{teacher.id}}" name="rating-{{teacher.id}}" [checked]="teacher.rating == 1" (click)="updateRating(teacher.id, 1)"/>
+          <label for="star1-{{teacher.id}}">1 star</label>
+        </fieldset>
+      </div>
+    </div>
+
+<!-- 
+
+
+      <div class="card m-2" style="width: 18rem;">
+        <img src="..." class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Card title</h5>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          <fieldset class="rating">
+            <input type="radio" id="star5" name="rating2" [checked]="rating2 == 5" disabled/>
+            <label for="star5">5 stars</label>
+            <input type="radio" id="star4" name="rating2" [checked]="rating2 == 4" disabled/>
+            <label for="star4">4 stars</label>
+            <input type="radio" id="star3" name="rating2" [checked]="rating2 == 3" disabled/>
+            <label for="star3">3 stars</label>
+            <input type="radio" id="star2" name="rating2" [checked]="rating2 == 2" disabled/>
+            <label for="star2">2 stars</label>
+            <input type="radio" id="star1" name="rating2" [checked]="rating2 == 1" disabled/>
+            <label for="star1">1 star</label>
+          </fieldset>
+        </div>
+      </div>
+      <div class="card m-2" style="width: 18rem;">
+        <img src="..." class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Card title</h5>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          <fieldset class="rating">
+            <input type="radio" id="star5" name="rating" [checked]="rating == 5" disabled/>
+            <label for="star5">5 stars</label>
+            <input type="radio" id="star4" name="rating" [checked]="rating == 4" disabled/>
+            <label for="star4">4 stars</label>
+            <input type="radio" id="star3" name="rating" [checked]="rating == 3" disabled/>
+            <label for="star3">3 stars</label>
+            <input type="radio" id="star2" name="rating" [checked]="rating == 2" disabled/>
+            <label for="star2">2 stars</label>
+            <input type="radio" id="star1" name="rating" [checked]="rating == 1" disabled/>
+            <label for="star1">1 star</label>
+          </fieldset>
+        </div>
+      </div>
+      <div class="card m-2" style="width: 18rem;">
+        <img src="..." class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Card title</h5>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          <fieldset class="rating">
+            <input type="radio" id="star5" name="rating" [checked]="rating == 5" disabled/>
+            <label for="star5">5 stars</label>
+            <input type="radio" id="star4" name="rating" [checked]="rating == 4" disabled/>
+            <label for="star4">4 stars</label>
+            <input type="radio" id="star3" name="rating" [checked]="rating == 3" disabled/>
+            <label for="star3">3 stars</label>
+            <input type="radio" id="star2" name="rating" [checked]="rating == 2" disabled/>
+            <label for="star2">2 stars</label>
+            <input type="radio" id="star1" name="rating" [checked]="rating == 1" disabled/>
+            <label for="star1">1 star</label>
+          </fieldset>
+        </div>
+      </div>
+      <div class="card m-2" style="width: 18rem;">
+        <img src="..." class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Card title</h5>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          <fieldset class="rating">
+            <input type="radio" id="star5" name="rating" [checked]="rating == 5" disabled/>
+            <label for="star5">5 stars</label>
+            <input type="radio" id="star4" name="rating" [checked]="rating == 4" disabled/>
+            <label for="star4">4 stars</label>
+            <input type="radio" id="star3" name="rating" [checked]="rating == 3" disabled/>
+            <label for="star3">3 stars</label>
+            <input type="radio" id="star2" name="rating" [checked]="rating == 2" disabled/>
+            <label for="star2">2 stars</label>
+            <input type="radio" id="star1" name="rating" [checked]="rating == 1" disabled/>
+            <label for="star1">1 star</label>
+          </fieldset>
+        </div>
+      </div>
+      <div class="card m-2" style="width: 18rem;">
+        <img src="..." class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Card title</h5>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          <fieldset class="rating">
+            <input type="radio" id="star5" name="rating" [checked]="rating == 5" disabled/>
+            <label for="star5">5 stars</label>
+            <input type="radio" id="star4" name="rating" [checked]="rating == 4" disabled/>
+            <label for="star4">4 stars</label>
+            <input type="radio" id="star3" name="rating" [checked]="rating == 3" disabled/>
+            <label for="star3">3 stars</label>
+            <input type="radio" id="star2" name="rating" [checked]="rating == 2" disabled/>
+            <label for="star2">2 stars</label>
+            <input type="radio" id="star1" name="rating" [checked]="rating == 1" disabled/>
+            <label for="star1">1 star</label>
+          </fieldset>
+        </div>
+      </div>
+      <div class="card m-2" style="width: 18rem;">
+        <img src="..." class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Card title</h5>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          <fieldset class="rating">
+            <input type="radio" id="star5" name="rating" [checked]="rating == 5" disabled/>
+            <label for="star5">5 stars</label>
+            <input type="radio" id="star4" name="rating" [checked]="rating == 4" disabled/>
+            <label for="star4">4 stars</label>
+            <input type="radio" id="star3" name="rating" [checked]="rating == 3" disabled/>
+            <label for="star3">3 stars</label>
+            <input type="radio" id="star2" name="rating" [checked]="rating == 2" disabled/>
+            <label for="star2">2 stars</label>
+            <input type="radio" id="star1" name="rating" [checked]="rating == 1" disabled/>
+            <label for="star1">1 star</label>
+          </fieldset>
+        </div>
+      </div>
+      <div class="card m-2" style="width: 18rem;">
+        <img src="..." class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Card title</h5>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          <fieldset class="rating">
+            <input type="radio" id="star5" name="rating" [checked]="rating == 5" disabled/>
+            <label for="star5">5 stars</label>
+            <input type="radio" id="star4" name="rating" [checked]="rating == 4" disabled/>
+            <label for="star4">4 stars</label>
+            <input type="radio" id="star3" name="rating" [checked]="rating == 3" disabled/>
+            <label for="star3">3 stars</label>
+            <input type="radio" id="star2" name="rating" [checked]="rating == 2" disabled/>
+            <label for="star2">2 stars</label>
+            <input type="radio" id="star1" name="rating" [checked]="rating == 1" disabled/>
+            <label for="star1">1 star</label>
+          </fieldset>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
+
+
+  
+   -->

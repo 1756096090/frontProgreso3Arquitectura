@@ -1,0 +1,101 @@
+/* src/app/components/chat/chat.component.css */
+.chat-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  border: 1px solid #ddd;
+  border-radius: 15px;
+  /* Más curvo */
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  /* Sombra para efecto 3D */
+}
+
+.messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 10px;
+  background-color: #f9f9f9;
+}
+
+.message {
+  padding: 10px;
+  margin: 5px 0;
+  border-radius: 15px;
+  /* Más curvo */
+  display: flex;
+  flex-direction: column;
+  max-width: 70%;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+  /* Para mantener los saltos de línea y los espacios en blanco */
+}
+
+.message.me {
+  background-color: #007bff;
+  /* Azul */
+  color: white;
+  /* Texto blanco */
+  align-self: flex-end;
+  text-align: right;
+  margin-left: auto;
+  border-top-right-radius: 0;
+  /* Curva personalizada */
+}
+
+.message.other {
+  background-color: #e0e0e0;
+  align-self: flex-start;
+  text-align: left;
+  border-top-left-radius: 0;
+  /* Curva personalizada */
+}
+
+.message-text {
+  margin-bottom: 5px;
+  white-space: pre-wrap;
+  /* Para mantener los saltos de línea y los espacios en blanco */
+}
+
+.timestamp {
+  font-size: 0.8em;
+  color: #888;
+}
+
+.new-message {
+  display: flex;
+  padding: 10px;
+  border-top: 1px solid #ddd;
+  background-color: #fff;
+}
+
+.new-message input {
+  flex: 1;
+  padding: 10px;
+  margin-right: 10px;
+  border: 1px solid #ccc;
+  border-radius: 15px;
+  /* Más curvo */
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+  /* Sombra interna */
+}
+
+.new-message button {
+  padding: 10px 20px;
+  border: none;
+  background-color: #007bff;
+  /* Azul */
+  color: white;
+  /* Texto blanco */
+  border-radius: 15px;
+  /* Más curvo */
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.new-message button:hover {
+  background-color: #0056b3;
+  /* Azul más oscuro al pasar el mouse */
+}
