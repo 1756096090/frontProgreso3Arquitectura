@@ -1,36 +1,35 @@
-/* src/app/components/chat/chat.component.css */
+
+.notifications {
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.notifications .notification {
+  margin-bottom: 10px;
+}
+
 .chat-container {
   display: flex;
   flex-direction: column;
-  height: 100%;
+  height: 80vh;
+  /* Altura basada en el 80% del viewport */
   max-width: 600px;
   margin: 0 auto;
   border: 1px solid #ddd;
   border-radius: 15px;
-  /* Más curvo */
   overflow: hidden;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  /* Sombra para efecto 3D */
 }
 
 .messages {
   flex: 1;
   overflow-y: auto;
+  /* Importante para permitir desplazamiento */
   padding: 10px;
+  margin: 2rem;
   background-color: #f9f9f9;
-}
-
-.message {
-  padding: 10px;
-  margin: 5px 0;
-  border-radius: 15px;
-  /* Más curvo */
-  display: flex;
-  flex-direction: column;
-  max-width: 70%;
-  word-wrap: break-word;
-  white-space: pre-wrap;
-  /* Para mantener los saltos de línea y los espacios en blanco */
 }
 
 .message.me {
@@ -40,7 +39,10 @@
   /* Texto blanco */
   align-self: flex-end;
   text-align: right;
+  margin: 0.5rem;
+  padding: 10px;
   margin-left: auto;
+  border-radius: 10px;
   border-top-right-radius: 0;
   /* Curva personalizada */
 }
@@ -49,7 +51,10 @@
   background-color: #e0e0e0;
   align-self: flex-start;
   text-align: left;
+  border-radius: 10px;
   border-top-left-radius: 0;
+    margin: 0.5rem;
+      padding: 10px;
   /* Curva personalizada */
 }
 
@@ -99,3 +104,28 @@
   background-color: #0056b3;
   /* Azul más oscuro al pasar el mouse */
 }
+
+
+/* Coloca las notificaciones en el lado derecho y las fija en la pantalla */
+.notifications {
+  position: fixed;
+  right: 0;
+  top: 50px;
+  /* Ajusta según el encabezado de tu página */
+  width: 200px;
+  /* Anchura fija para las notificaciones */
+  height: calc(100% - 100px);
+  /* Ajusta la altura para que no toque los bordes superior e inferior */
+  overflow-y: auto;
+  /* Permite el desplazamiento si hay muchas notificaciones */
+  background-color: #f9f9f9;
+  border-left: 1px solid #ccc;
+  padding: 10px;
+  z-index: 1000;
+  /* Asegura que esté por encima de otros elementos */
+}
+
+/* Ajustes para el contenedor del chat */
+
+
+/* Resto de estilos... */

@@ -1,16 +1,29 @@
-<!-- src/app/components/chat/chat.component.html -->
-<div class="chat-container" *ngIf="chat">
-  {{chat | json}}
-  <div class="messages">
-    <div *ngFor="let message of chat" class="message"
-    [ngClass]="{'me': owner === message.usuarioID1 , 'other': owner !== message.usuarioID1}">
-      <span class="message-text">{{ message.mensaje }}</span>
-      <span class="timestamp">{{ message.timestamp | date:'short' }}</span>
-    </div>
+<input type="number" [(ngModel)]="usuarioId1" placeholder="Usuario 1">
+<input type="number" [(ngModel)]="usuarioId2" placeholder="Usuario 2">
+
+<div class="notifications">
+  <h3>Notificaciones</h3>
+  <div *ngFor="let notification of notifications; let i = index" class="notification">
+    <span class="message-text">{{ notification.mensaje }}</span>
+    <span class="timestamp">{{ notification.timestamp| date:'short' }}</span>
+    <button class="delete-btn" (click)="deleteNotification(i)">x</button>
   </div>
+</div>
+
+<div class="chat-container" >
+  <div class="messages" #scrollMe >
+  <!-- Bucle para los mensajes -->
+  <div *ngFor="let message of chat" class="message"
+       [ngClass]="{'me': owner !== message.usuarioID1, 'other': owner == message.usuarioID1}">
+    <span class="message-text">{{ message.mensaje }}</span>
+    <span class="timestamp">{{ message.fecha | date:'short' }}</span>
+  </div>
+</div>
 
   <div class="new-message">
-    <input [(ngModel)]="newMessage" placeholder="Escribe un mensaje..." />
+    <input [(ngModel)]="newMessage" placeholder="Escribe un mensaje...">
     <button (click)="sendMessage()">Enviar</button>
   </div>
 </div>
+
+{{chat | json}}

@@ -4,15 +4,14 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Chat, Message } from './chat.model';
 
-
 @Injectable({
   providedIn: 'root'
 })
-
 export class ChatService {
-  private apiUrl = 'http://localhost:8080';
+  private apiUrl = 'http://localhost:8080';  // Asegúrate de que esta URL es correcta para tu API
 
   constructor(private http: HttpClient) { }
+
   mensajesBase(usuarios: { usuario1: number; usuario2: number }): Observable<Chat[]> {
     console.log("🚀 ~ ChatService ~ mensajesBase ~ usuarios:", usuarios);
     console.log('POST /mensajesBase', usuarios);
@@ -21,23 +20,17 @@ export class ChatService {
     });
   }
 
-  enviarMensaje(usuario1: number, usuario2: number, mensaje: string): Observable<Chat> {
-    const body = { usuario1, usuario2, mensaje };
-    console.log('POST /mensaje', body);
-    return this.http.post<Chat>(`${this.apiUrl}/mensaje`, body, {
+  enviarMensaje(usuarioId1: number, usuarioId2: number, mensaje: string): Observable<Message> {
+    console.log('POST /mensaje', { usuario1:usuarioId1, usuario2:usuarioId2, mensaje });
+    return this.http.post<Message>(`${this.apiUrl}/mensaje`, { usuario1: usuarioId1, usuario2: usuarioId2, mensaje }, {
       headers: { 'Content-Type': 'application/json' }
     });
   }
 
-
-
-  obtenerChats(chatId: string): Observable<Message[]> {
-    console.log('GET /chat/' + chatId);
-    return this.http.get<Message[]>(`${this.apiUrl}/chat/${chatId}`);
-  }
-
-  obtenerTodosLosChats(): Observable<Chat[]> {
-    console.log('GET /chats');
-    return this.http.get<Chat[]>(`${this.apiUrl}/chats`);
+  obtenerNotificacions(usuarios: { usuario1: number; usuario2: number }): Observable<Message[]> {
+    console.log("🚀 ~ ChatService ~ obtenerNotificacions ~ usuarios:", usuarios);
+    return this.http.post<Message[]>(`${this.apiUrl}/notificacions`, usuarios, {
+      headers: { 'Content-Type': 'application/json' }
+    });
   }
 }

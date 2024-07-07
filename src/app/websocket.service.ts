@@ -1,31 +1,40 @@
+// websocket.service.ts
 import { Injectable } from '@angular/core';
+import { Observable, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class WebSocketService {
-  private socket: WebSocket;
+  private subject!: Subject<MessageEvent>;
 
-  constructor() {
-    this.socket = new WebSocket('ws://localhost:8080');
-    this.socket.onopen = () => {
-      console.log('WebSocket connection opened.');
-    };
-    this.socket.onmessage = (event) => {
-      console.log('WebSocket message received:', event.data);
-    };
-    this.socket.onerror = (event) => {
-      console.error('WebSocket error observed:', event);
-    };
+  constructor() { }
+
+  connect(url: string): Subject<MessageEvent> {
+    if (!this.subject) {
+      this.subject = this.create(url);
+    }
+    return this.subject;
   }
 
-  public sendMessage(message: any) {
-    if (this.socket.readyState === WebSocket.OPEN) {
-      this.socket.send(JSON.stringify(message));
-    } else {
-      this.socket.onopen = () => {
-        this.socket.send(JSON.stringify(message));
-      };
-    }
+  private create(url: string): Subject<MessageEvent> {
+    const ws = new WebSocket(url);
+
+    const observable = new Observable((obs) => {
+      ws.onmessage = obs.next.bind(obs);
+      ws.onerror = obs.error.bind(obs);
+      ws.onclose = obs.complete.bind(obs);
+      return ws.close.bind(ws);
+    });
+
+    const observer = {
+      next: (data: Object) => {
+        if (ws.readyState === WebSocket.OPEN) {
+          ws.send(JSON.stringify(data));
+        }
+      }
+    };
+
+    return Subject.create(observer, observable);
   }
 }
