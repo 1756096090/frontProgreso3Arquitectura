@@ -88,8 +88,8 @@ export class ChatComponent implements OnInit, OnDestroy {
 
   sendMessage(): void {
     const message = {
-      usuario1: this.usuarioId1,
-      usuario2: this.usuarioId2,
+      usuarioID1: this.usuarioId1,
+      usuarioID2: this.usuarioId2,
       mensaje: this.newMessage,
       fecha: new Date()
     };
