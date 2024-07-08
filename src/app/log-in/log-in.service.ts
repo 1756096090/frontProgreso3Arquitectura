@@ -6,22 +6,11 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthService {
+  private apiUrl = 'http://localhost:8000/login';
 
-//   private apiUrl = '...'; 
+  constructor(private http: HttpClient) {}
 
-//   constructor(private http: HttpClient) { }
-
-//   getCredentials(email: string): Observable<{email: string, password: string}> {
-//     return this.http.get<{email: string, password: string}>(`${this.apiUrl}?email=${email}`);
-//   }
-
-//   compareCredentials(email: string, password: string): Observable<boolean> {
-//     return new Observable(observer => {
-//       this.getCredentials(email).subscribe(dbCredentials => {
-//         const isValid = dbCredentials && dbCredentials.password === password;
-//         observer.next(isValid);
-//         observer.complete();
-//       });
-//     });
-//   }
+  login(loginData: { usuarioEstudiante: string; passwordEstudiante: string }): Observable<boolean> {
+    return this.http.post<boolean>(this.apiUrl, loginData);
+  }
 }

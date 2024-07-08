@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, importProvidersFrom } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app.routes';
@@ -8,26 +8,29 @@ import { ChannelService, ChatClientService, MessageComponent, StreamAutocomplete
 import { ChatComponent } from './chat/chat.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-
+import { LogInComponent } from './log-in/log-in.component';
+import { LoginModalComponent } from './login-modal/login-modal.component';
+import { CommonModule } from '@angular/common';
 
 
 @NgModule({
     declarations: [
         AppComponent,
-        ChatComponent
+        ChatComponent,
+        LogInComponent,
+        LoginModalComponent,
     ],
     imports: [
         BrowserModule,
         FormsModule,
         AppRoutingModule,
-        TranslateModule,
+        TranslateModule.forRoot(),
         StreamAutocompleteTextareaModule,
         StreamChatModule,
         NgbModule,
+        CommonModule,
         HttpClientModule
-        // HttpClient
     ],
-    providers: [importProvidersFrom(TranslateModule.forRoot())],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

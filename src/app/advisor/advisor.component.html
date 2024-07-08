@@ -1,91 +1,43 @@
-<p>advisor works! list</p>
-<div class="container mt-5">
-    <div class="d-flex flex-wrap">
-      <div class="card m-2" style="width: 18rem;">
-        <img src="..." class="card-img-top" alt="...">
+<div class="container mt-5 mb-5">
+  <div class="d-flex flex-wrap">
+    <div *ngFor="let tutor of tutors" class="m-2" style="width: 100vw;">
+      <div *ngIf="tutor.estado.toLowerCase() !== 'postulante'" class="card">
         <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          <a data-bs-toggle="modal" data-bs-target="#exampleModal" href="#" class="btn btn-primary">Reservar</a>
-        </div>
-      </div>
-      <div class="card m-2" style="width: 18rem;">
-        <img src="..." class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          <a data-bs-toggle="modal" data-bs-target="#exampleModal" href="#" class="btn btn-primary">Reservar</a>
-        </div>
-      </div>
-      <div class="card m-2" style="width: 18rem;">
-        <img src="..." class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          <a data-bs-toggle="modal" data-bs-target="#exampleModal" href="#" class="btn btn-primary">Reservar</a>
-        </div>
-      </div>
-      <div class="card m-2" style="width: 18rem;">
-        <img src="..." class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          <a data-bs-toggle="modal" data-bs-target="#exampleModal" href="#" class="btn btn-primary">Reservar</a>
-        </div>
-      </div>
-      <div class="card m-2" style="width: 18rem;">
-        <img src="..." class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          <a data-bs-toggle="modal" data-bs-target="#exampleModal" href="#" class="btn btn-primary">Reservar</a>
-        </div>
-      </div>
-      <div class="card m-2" style="width: 18rem;">
-        <img src="..." class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          <a data-bs-toggle="modal" data-bs-target="#exampleModal" href="#" class="btn btn-primary">Reservar</a>
-        </div>
-      </div>
-      <div class="card m-2" style="width: 18rem;">
-        <img src="..." class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          <a data-bs-toggle="modal" data-bs-target="#exampleModal" href="#" class="btn btn-primary">Reservar</a>
-        </div>
-      </div>
-      <div class="card m-2" style="width: 18rem;">
-        <img src="..." class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          <a data-bs-toggle="modal" data-bs-target="#exampleModal" href="#" class="btn btn-primary">Reservar</a>
+          <h5 class="card-title">{{ tutor.nombre }}</h5>
+          <p class="card-text"><b>Correo de contacto: </b>{{ tutor.correo }}</p>
+          <p class="card-text"><b>Número de teléfono: </b>{{ tutor.telefono }}</p>
+          <p class="card-text"><b>Dirección: </b>{{ tutor.direccion }}</p>
+
+          <h5 class="card-title">Experiencias</h5>
+          <div *ngFor="let experiencia of tutor.experiencia">
+            <p class="card-text"><b>Experiencia: </b>{{ experiencia.puesto }} en {{ experiencia.institucion }} desde {{ experiencia.fechaInicio }} hasta {{ experiencia.fechaFin }}</p>
+            <p class="card-text pb-3"><b>Descripción: </b>{{ experiencia.descripcion }}</p>
+          </div>
+
+          <h5 class="card-title">Certificaciones</h5>
+          <div *ngFor="let certificacion of tutor.certificaciones">
+            <p class="card-text"><b>Certificación: </b>{{ certificacion.titulo }} obtenida en {{ certificacion.institucion }} el {{ certificacion.fechaObtencion }}</p>
+          </div>
+
+          <p class="card-text pt-5"><b>Habilidades: </b>{{ tutor.habilidades.join(', ') }}</p>
+          <p class="card-text pb-4"><b>Estado: </b>{{ tutor.estado }}</p>
+
+          <div *ngFor="let documento of tutor.documentos">
+            <a [href]="documento.url" target="_blank">{{ documento.tipo }}</a>
+          </div>
+          <p class="card-text"><b>Es tutor actualmente: </b>{{ tutor.esTutor ? 'Sí' : 'No' }}</p>
+
+          <h4 class="card-title"><b>Estudiantes previos del profesor: </b></h4>
+          <div class="pb-3" *ngFor="let tutoria of tutor.tutorias">
+            <p class="card-text">{{ tutoria.usuarioEstudiante }}</p>
+          </div>
+
+          <button *ngIf="!tutor.esTutor" class="btn btn-primary" (click)="reservarMentor(tutor)">Reservar como mentor</button>
+          <button *ngIf="tutor.esTutor" class="btn btn-danger" (click)="cancelarTutoria(tutor)">Cancelar Tutoría</button>
         </div>
       </div>
     </div>
   </div>
-
-
-  <!-- Modal -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">Horarios Disponibles</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body d-flex flex-column align-items-center">
-          <button type="button" class="btn btn-secondary mb-2" data-bs-dismiss="modal">Hora</button>
-          <button type="button" class="btn btn-secondary mb-2" data-bs-dismiss="modal">Hora</button>
-          <button type="button" class="btn btn-secondary mb-2" data-bs-dismiss="modal">Hora</button>
-        </div>
-        <div class="modal-footer">
-        </div>
-      </div>
-    </div>
-  </div>
+</div>
 
 
